@@ -37,7 +37,7 @@ static const uint8_t hid_report_desc[] = {
     HID_USAGE_PAGE(HID_PAGE_DESKTOP),
     HID_USAGE(HID_DESKTOP_KEYBOARD),
     HID_COLLECTION(HID_APPLICATION_COLLECTION),
-        HID_REPORT_ID(ReportIdKeyboard), 
+        // HID_REPORT_ID(ReportIdKeyboard), 
         // Keyboard report
         HID_USAGE_PAGE(HID_DESKTOP_KEYPAD),
         HID_USAGE_MINIMUM(HID_KEYBOARD_L_CTRL),
@@ -73,55 +73,55 @@ static const uint8_t hid_report_desc[] = {
         HID_INPUT(HID_IOF_DATA | HID_IOF_ARRAY | HID_IOF_ABSOLUTE),
     HID_END_COLLECTION,
 
-    HID_USAGE_PAGE(HID_PAGE_DESKTOP),
-    HID_USAGE(HID_DESKTOP_MOUSE),
-    HID_COLLECTION(HID_APPLICATION_COLLECTION),
-        HID_USAGE(HID_DESKTOP_POINTER),
-        HID_COLLECTION(HID_PHYSICAL_COLLECTION),
-            HID_REPORT_ID(ReportIdMouse),
-            // Mouse report
-            HID_USAGE_PAGE(HID_PAGE_BUTTON),
-            HID_USAGE_MINIMUM(1),
-            HID_USAGE_MAXIMUM(3),
-            HID_LOGICAL_MINIMUM(0),
-            HID_LOGICAL_MAXIMUM(1),
-            HID_REPORT_COUNT(3),
-            HID_REPORT_SIZE(1),
-            // Input - Mouse keys
-            HID_INPUT(HID_IOF_DATA | HID_IOF_VARIABLE | HID_IOF_ABSOLUTE),
+    // HID_USAGE_PAGE(HID_PAGE_DESKTOP),
+    // HID_USAGE(HID_DESKTOP_MOUSE),
+    // HID_COLLECTION(HID_APPLICATION_COLLECTION),
+    //     HID_USAGE(HID_DESKTOP_POINTER),
+    //     HID_COLLECTION(HID_PHYSICAL_COLLECTION),
+    //         HID_REPORT_ID(ReportIdMouse),
+    //         // Mouse report
+    //         HID_USAGE_PAGE(HID_PAGE_BUTTON),
+    //         HID_USAGE_MINIMUM(1),
+    //         HID_USAGE_MAXIMUM(3),
+    //         HID_LOGICAL_MINIMUM(0),
+    //         HID_LOGICAL_MAXIMUM(1),
+    //         HID_REPORT_COUNT(3),
+    //         HID_REPORT_SIZE(1),
+    //         // Input - Mouse keys
+    //         HID_INPUT(HID_IOF_DATA | HID_IOF_VARIABLE | HID_IOF_ABSOLUTE),
 
-            HID_REPORT_SIZE(1),
-            HID_REPORT_COUNT(5),
-            // Input - Mouse keys padding
-            HID_INPUT(HID_IOF_CONSTANT | HID_IOF_VARIABLE | HID_IOF_ABSOLUTE),
+    //         HID_REPORT_SIZE(1),
+    //         HID_REPORT_COUNT(5),
+    //         // Input - Mouse keys padding
+    //         HID_INPUT(HID_IOF_CONSTANT | HID_IOF_VARIABLE | HID_IOF_ABSOLUTE),
             
-            HID_USAGE_PAGE(HID_PAGE_DESKTOP),
-            HID_USAGE(HID_DESKTOP_X),
-            HID_USAGE(HID_DESKTOP_Y),
-            HID_USAGE(HID_DESKTOP_WHEEL),
-            HID_LOGICAL_MINIMUM(-127),
-            HID_LOGICAL_MAXIMUM(127),
-            HID_REPORT_SIZE(8),
-            HID_REPORT_COUNT(3),
-            // Input - Mouse movement data (x, y, scroll)
-            HID_INPUT(HID_IOF_DATA | HID_IOF_VARIABLE | HID_IOF_RELATIVE),
-        HID_END_COLLECTION,
-    HID_END_COLLECTION,
+    //         HID_USAGE_PAGE(HID_PAGE_DESKTOP),
+    //         HID_USAGE(HID_DESKTOP_X),
+    //         HID_USAGE(HID_DESKTOP_Y),
+    //         HID_USAGE(HID_DESKTOP_WHEEL),
+    //         HID_LOGICAL_MINIMUM(-127),
+    //         HID_LOGICAL_MAXIMUM(127),
+    //         HID_REPORT_SIZE(8),
+    //         HID_REPORT_COUNT(3),
+    //         // Input - Mouse movement data (x, y, scroll)
+    //         HID_INPUT(HID_IOF_DATA | HID_IOF_VARIABLE | HID_IOF_RELATIVE),
+    //     HID_END_COLLECTION,
+    // HID_END_COLLECTION,
 
-    HID_USAGE_PAGE(HID_PAGE_CONSUMER),
-    HID_USAGE(HID_CONSUMER_CONTROL),
-    HID_COLLECTION(HID_APPLICATION_COLLECTION),
-        HID_REPORT_ID(ReportIdConsumer),
-        // Consumer report
-        HID_LOGICAL_MINIMUM(0),
-        HID_RI_LOGICAL_MAXIMUM(16, 0x3FF),
-        HID_USAGE_MINIMUM(0),
-        HID_RI_USAGE_MAXIMUM(16, 0x3FF),
-        HID_REPORT_COUNT(HID_CONSUMER_MAX_KEYS),
-        HID_REPORT_SIZE(16),
-        // Input - Consumer control keys
-        HID_INPUT(HID_IOF_DATA | HID_IOF_ARRAY | HID_IOF_ABSOLUTE),
-    HID_END_COLLECTION,
+    // HID_USAGE_PAGE(HID_PAGE_CONSUMER),
+    // HID_USAGE(HID_CONSUMER_CONTROL),
+    // HID_COLLECTION(HID_APPLICATION_COLLECTION),
+    //     HID_REPORT_ID(ReportIdConsumer),
+    //     // Consumer report
+    //     HID_LOGICAL_MINIMUM(0),
+    //     HID_RI_LOGICAL_MAXIMUM(16, 0x3FF),
+    //     HID_USAGE_MINIMUM(0),
+    //     HID_RI_USAGE_MAXIMUM(16, 0x3FF),
+    //     HID_REPORT_COUNT(HID_CONSUMER_MAX_KEYS),
+    //     HID_REPORT_SIZE(16),
+    //     // Input - Consumer control keys
+    //     HID_INPUT(HID_IOF_DATA | HID_IOF_ARRAY | HID_IOF_ABSOLUTE),
+    // HID_END_COLLECTION,
     // clang-format on
 };
 
@@ -210,7 +210,7 @@ struct HidReportMouse {
 } FURI_PACKED;
 
 struct HidReportKB {
-    uint8_t report_id;
+    // uint8_t report_id;
     struct {
         uint8_t mods;
         uint8_t reserved;
@@ -387,7 +387,7 @@ static void hid_init(usbd_device* dev, FuriHalUsbInterface* intf, void* ctx) {
     FuriHalUsbHidConfig* cfg = (FuriHalUsbHidConfig*)ctx;
     if(hid_semaphore == NULL) hid_semaphore = furi_semaphore_alloc(1, 1);
     usb_dev = dev;
-    hid_report.keyboard.report_id = ReportIdKeyboard;
+    // hid_report.keyboard.report_id = ReportIdKeyboard;
     hid_report.mouse.report_id = ReportIdMouse;
     hid_report.consumer.report_id = ReportIdConsumer;
 
